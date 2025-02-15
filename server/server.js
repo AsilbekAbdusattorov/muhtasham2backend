@@ -47,5 +47,5 @@ app.post("/book-room", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server ishga tushdi: http://localhost:${PORT}`);
+  console.log(`Server ishga tushdi: https://muxtasham2.vercel.app/${PORT}`);
 });
