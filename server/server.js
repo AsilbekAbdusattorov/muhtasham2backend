@@ -1,4 +1,3 @@
-
 import express from "express";
 import fs from "fs";
 import cors from "cors";
@@ -9,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const ROOMS_FILE = path.join(__dirname, "rooms.json");
 
@@ -24,6 +23,11 @@ const loadRooms = () => {
   }
   return JSON.parse(fs.readFileSync(ROOMS_FILE, "utf-8"));
 };
+
+// Asosiy sahifa (404 chiqmasligi uchun)
+app.get("/", (req, res) => {
+  res.send("Muhtasham Backend ishlayapti! 🚀");
+});
 
 // Xonalar ro‘yxatini olish
 app.get("/rooms", (req, res) => {
@@ -43,5 +47,5 @@ app.post("/book-room", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server ishga tushdi: https://muxtasham2.vercel.app/`);
+  console.log(`Server ishga tushdi: http://localhost:${PORT}`);
 });
